@@ -40,13 +40,6 @@ if (process.env.NODE_ENV === 'test') {
   server.database = db;
 }
 
-// // set up socket connection
-// const io = require('socket.io')(server.listener);
-//
-// // sockets
-// require('./rooms/lobby/_index')(io);
-// require('./rooms/game/_index')(io);
-
 // Auth
 require('./auth')(server);
 
@@ -73,23 +66,11 @@ plugins.push({ register: userRoutes });
 plugins.push({ register: userMatesRoutes });
 plugins.push({ register: userStatsRoutes });
 
-const socketOptions = require('./sockets/options.sockets');
-plugins.push({ register: Nes, options: socketOptions.options });
-
-const gameSockets = require('./sockets/game.sockets');
-const lobbySockets = require('./sockets/lobby.sockets');
-const chatSockets = require('./sockets/chat.sockets');
-
-plugins.push({ register: gameSockets });
-plugins.push({ register: lobbySockets });
-plugins.push({ register: chatSockets });
-
 const logs = require('./logs');
 const docs = require('./docs');
 
 plugins.push({ register: logs });
 plugins.push({ register: docs });
-// plugins.push({ register: boomDecorators });
 
 server.ext('onPreResponse', corsHeaders);
 
