@@ -1,0 +1,12 @@
+# Specifies files to intentionally ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+**/*.DS_Store
+*.swp
+Thumbs.db
+node_modules/
+scripts/
+backup/
+server/certs
+server/config.js
+server/communicate/mail.js
